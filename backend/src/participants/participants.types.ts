@@ -1,5 +1,0 @@
-export enum PARTICIPANT_STATUS_ENUM{
-    PLAYING = 'PLAYING', 
-    WITHDREW = 'WITHDREW', 
-    PENDING = 'PENDING'
-}
