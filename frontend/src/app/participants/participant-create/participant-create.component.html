@@ -1,0 +1,35 @@
+<div class="page-container">
+  <form [formGroup]="participantForm" (ngSubmit)="onSubmit()" class="participant-form">
+    <h1>New Participant Form</h1>
+    <div class="form-row">
+      <div class="form-column">
+        <label>First Name*</label>
+        <input type="text" formControlName="firstName" placeholder="First Name">
+  
+        <label>Last Name*</label>
+        <input type="text" formControlName="lastName" placeholder="Last Name">
+  
+        <label>Email*</label>
+        <input type="text" formControlName="email" placeholder="email">
+         @if(email.invalid && (email.dirty || email.touched)){
+          <div>
+            @if(email.errors?.['required']){<div>Email is required</div>}
+            @if(email.errors?.['email']){<div>Email is not valid</div>}
+          </div> }
+  
+        <label>Phone*</label>
+        <input type="text" formControlName="phone">
+      </div>
+    </div>
+    <div class="form-row">
+      <span class="form-column">
+        <button type="submit" (click)="backToParticipantsPage()">Go back</button>
+      </span>
+      <span class="form-column"  style="float: right;">
+        <button type="submit" [disabled]="participantForm.invalid">Create</button>
+      </span>
+    </div>
+  
+  </form>
+  
+</div>

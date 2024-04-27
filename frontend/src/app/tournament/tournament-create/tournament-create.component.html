@@ -1,0 +1,39 @@
+<div class="page-container">
+  <form [formGroup]="tournamentForm" (ngSubmit)="onSubmit()" class="tournament-form">
+    <h1>New Tournament Form</h1>
+    <div class="form-row">
+      <div class="form-column">
+        <label>Title*</label>
+        <input type="text" formControlName="title">
+  
+        <label>Tournament Type*</label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let type of tournamentTypes" [value]="type">{{ type }}</mat-option>
+        </mat-select>
+  
+        <label>Start Date*</label>
+        <input type="datetime-local" formControlName="start_date">
+  
+        <label>End Date*</label>
+        <input type="datetime-local" formControlName="end_date">
+  
+        <label>Max Participants*</label>
+        <input min="0" type="number" formControlName="max_participants">
+      </div>
+  
+      <div class="form-column">
+        <label>Description</label>
+        <textarea formControlName="description" class="description-textarea"></textarea>
+      </div>
+    </div>
+    <div class="form-row">
+      <span class="form-column">
+        <button type="submit" [disabled]="tournamentForm.invalid">Create Tournament</button>
+      </span>
+      <span class="form-column" style="float: right;">
+        <button type="submit" (click)="backToTournamentsPage()">Go back</button>
+      </span>
+    </div>
+  </form>
+  
+</div>

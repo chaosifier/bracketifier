@@ -1,0 +1,73 @@
+<div class="container">
+
+  <button mat-button (click)="goToTournaments()">Go to tournaments</button>
+  <h1>{{this.tournamentDetail$()?.title}}</h1>
+  <h2>{{this.tournamentDetail$()?.description}}</h2>
+
+  <div class="tournament-bracket tournament-bracket--rounded">
+    @for(round of rounds$(); track round.round_name){
+    <div class="tournament-bracket__round">
+      <h3 class="tournament-bracket__round-title">{{round.round_name}}</h3>
+      <ul class="tournament-bracket__list">
+        @for(event of round.events; track event._id){
+        <li class="tournament-bracket__item">
+          <div class={{this.getEventItemClass(event)}} tabindex="0" (click)="openEventUpdateDialogue(event)">
+
+            @if(round.round_number == 0){
+            <table class="tournament-bracket__table">
+              @if(event.status === "ENDED"){
+              <h2>Winner : {{event.teams[0].players[0].name.first + ' ' + event.teams[0].players[0].name.last}}</h2>
+              }@else {
+              <caption class="tournament-bracket__caption">
+                <span>UNDECIDED</span>
+              </caption>
+              }
+            </table>
+            }@else {
+            <table class="tournament-bracket__table">
+              <caption class="tournament-bracket__caption">
+                <time datetime="1998-02-20">{{event?.start_date | date: 'dd/MM/yyyy'}}</time> to
+                <time datetime="1998-02-20">{{event?.end_date | date: 'dd/MM/yyyy'}}</time>
+              </caption>
+              <caption class="tournament-bracket__caption">
+                <span>{{event?.status}}</span>
+              </caption>
+              <thead class="sr-only">
+                <tr>
+                  <th>Player</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              <tbody class="tournament-bracket__content">
+                <tr class={{this.getTeamItemClass(event.teams[0])}}>
+                  <td class="tournament-bracket__country">
+                    <abbr class="tournament-bracket__code" title="Undecided">{{(event.teams.length > 0 &&
+                      event.teams[0].players.length >= 1) ? (event.teams[0].players[0].name.first) : "------"}}</abbr>
+                    <span class="tournament-bracket__flag flag-icon flag-icon-fi" aria-label="Flag"></span>
+                  </td>
+                  <td class="tournament-bracket__score">
+                    <span class="tournament-bracket__number">{{event.score[0] ? event.score[0] : 0}}</span>
+                  </td>
+                </tr>
+                <tr class={{this.getTeamItemClass(event.teams[1])}}>
+                  <td class="tournament-bracket__country">
+                    <abbr class="tournament-bracket__code" title="Undecided">{{(event.teams.length > 1 &&
+                      event.teams[1].players.length >= 1) ? (event.teams[1].players[0].name.first) : "------"}}</abbr>
+                    <span class="tournament-bracket__flag flag-icon flag-icon-ru" aria-label="Flag"></span>
+                  </td>
+                  <td class="tournament-bracket__score">
+                    <span class="tournament-bracket__number">{{event.score[1] ? event.score[1] : 0}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            }
+          </div>
+        </li>
+        }
+
+      </ul>
+    </div>
+    }
+  </div>
+</div>

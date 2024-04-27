@@ -1,0 +1,15 @@
+<div class="page-container">
+    <h1>Manage Tournaments</h1>
+
+    <mat-list role="list">
+        @for(tournament of (tournaments$ | async)?.data; track tournament._id){
+        <tournament-item-card [data]="tournament" (onDelete)="refreshData()"/>
+        }
+    </mat-list>
+
+    <button mat-raised-button color="primary" type="submit" (click)="addNewTournament()">Add New Tournament</button>
+<!-- 
+    <mat-paginator [length]="200" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
+    </mat-paginator> -->
+</div>
+

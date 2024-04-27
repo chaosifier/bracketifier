@@ -1,0 +1,17 @@
+<mat-card class="participant-card-item">
+  <mat-card-header>
+    <mat-card-title>{{participantData?.name?.first}} - {{participantData?.name?.last}}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content routerLink={{(participantData?._id)}}>
+    <br />
+    <span>Email: <strong>{{participantData?.email}}</strong></span><br />
+    <span>Phone: <strong>{{participantData?.phone}}</strong></span><br />
+    <span>Status: <strong>{{participantData?.status}}</strong></span><br />
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button class="danger-button" mat-raised-button (click)="deleteParticipant()" color="warn">DELETE</button>
+    <button mat-button (click)="editParticipant()">EDIT</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,12 @@
+.participant-card-item {
+  max-width: 600px;
+  margin: 0px 0px 20px 0px;
+}
+
+.participant-card-item .mat-mdc-card-content{
+  cursor: pointer;
+}
+
+.danger-button{
+  margin: 0px 15px;
+}

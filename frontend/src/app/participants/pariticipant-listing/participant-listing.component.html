@@ -1,0 +1,21 @@
+<div class="page-container">
+  <h1>Manage Participants</h1>
+
+  <mat-list role="list">
+    @for(participant of (tournament$ | async)?.data?.participants; track participant._id){
+    <app-participant-item-card [data]="participant" (onDelete)="refreshData()" />
+    }
+  </mat-list>
+
+
+  <div fxLayout="row">
+    <span fxFlex="50" class="navigate-button">
+      <button mat-raised-button color="primary" type="submit" (click)="goBackTournament()">Go back</button>
+      </span>
+      <span fxFlex="50" class="navigate-button">
+        <button mat-raised-button color="primary" style="float: right;" type="submit" (click)="addParticipant()">Add New Participant</button>
+      </span>
+  </div>
+  <!-- <mat-paginator [length]="200" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
+  </mat-paginator> -->
+</div>

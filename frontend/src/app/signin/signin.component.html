@@ -1,0 +1,49 @@
+
+<div class="parent">
+  <div class="container" [ngClass]="isSignDivVisiable ? 'active' :'' " id="container">
+      <div class="form-container sign-in" >
+          <form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
+              <h1>Sign In</h1>
+              <!-- <span>or use your email password</span> -->
+              <input type="email" formControlName="email" placeholder="Email">
+                @if(signInEmail.invalid && (signInEmail.dirty || signInEmail.touched)){
+                  <div>
+                    @if(signInEmail.errors?.['required']){<div>Email is required</div>}
+                    @if(signInEmail.errors?.['email']){<div>Email is not valid</div>}
+                  </div> }
+              <input type="password" formControlName="password" placeholder="Password">
+              <button type="submit">Sign In</button>
+          </form>
+      </div>
+      <div class="form-container sign-up" >
+        <!-- <span>or use your name and email for registeration</span> -->
+        <form [formGroup]="signUpForm" (ngSubmit)="onRegister()">
+            <input type="text" formControlName="firstname"  placeholder="First name">
+            <input type="text" formControlName="lastname"  placeholder="Last name">
+            <input type="email" formControlName="email" placeholder="Email">
+              @if(signUpEmail.invalid && (signUpEmail.dirty || signUpEmail.touched)){
+                <div>
+                  @if(signUpEmail.errors?.['required']){<div>Email is required</div>}
+                  @if(signUpEmail.errors?.['email']){<div>Email is not valid</div>}
+                </div> }
+            <input type="password" formControlName="password"  placeholder="Password">
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+      <div class="toggle-container">
+          <div class="toggle">
+              <div class="toggle-panel toggle-left">
+                  <h1>Welcome Back!</h1>
+                  <p>Enter your personal details to use all of site features</p>
+                  <button type="button" class="hidden" id="login" (click)="isSignDivVisiable = false">Sign In</button>
+              </div>
+              <div class="toggle-panel toggle-right">
+                  <h1>Hello, Friend!</h1>
+                  <p>Register with your personal details to use all of site features</p>
+                  <button type="button" class="hidden" id="register" (click)="isSignDivVisiable = true">Sign Up</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+

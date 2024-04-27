@@ -1,0 +1,17 @@
+<mat-toolbar>
+  <h1>BRACKETIFIER</h1>
+  
+  <span class="example-spacer"></span>
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{$userInfo().firstName}}</mat-card-title>
+    <mat-card-subtitle>{{$userInfo().lastName}}</mat-card-subtitle>
+  </mat-card-header>
+  <button (click)="signout()" mat-button>
+    <span>Logout</span>
+    <!-- <mat-icon>logout</mat-icon> -->
+  </button>
+
+</mat-toolbar>
+
+<router-outlet />

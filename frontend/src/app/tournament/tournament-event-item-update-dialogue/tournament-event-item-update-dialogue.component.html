@@ -1,0 +1,27 @@
+<span mat-dialog-title>{{data.event.teams[0].players[0].name.first}} vs
+  {{data.event.teams[1].players[0].name.first}}</span>
+<mat-dialog-content class="mat-typography">
+  <form>
+    <mat-form-field>
+      <mat-label>{{data.event.teams[0].players[0].name.first}} score</mat-label>
+      <input min="0" matInput type="number" name="p1Score" [(ngModel)]="p1Score" placeholder="Enter score">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{data.event.teams[1].players[0].name.first}} score</mat-label>
+      <input min="0" matInput type="number" name="p2Score" [(ngModel)]="p2Score" placeholder="Enter score">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Event Status</mat-label>
+      <mat-select matInput name="eventState" [(ngModel)]="eventState">
+        <mat-option value="SCHEDULED">Scheduled</mat-option>
+        <mat-option value="ONGOING">Ongoing</mat-option>
+        <mat-option value="ENDED">Ended</mat-option>
+        <mat-option value="CANCELLED">Cancelled</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-button (click)="save()">Save</button>
+</mat-dialog-actions>

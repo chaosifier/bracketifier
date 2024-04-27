@@ -1,0 +1,49 @@
+<div class="page-container">
+  <form [formGroup]="participantForm" (ngSubmit)="onSubmit()" class="participant-form">
+    <h1>Update Participant Form</h1>
+    <div class="form-row">
+      <div class="form-column">
+        <label>First Name*</label>
+        <input type="text" formControlName="firstName" placeholder="First Name">
+  
+        <label>Last Name*</label>
+        <input type="text" formControlName="lastName" placeholder="Last Name">
+  
+        <label>Email*</label>
+        <input type="text" formControlName="email" placeholder="email">
+         @if(email.invalid && (email.dirty || email.touched)){
+          <div>
+            @if(email.errors?.['required']){<div>Email is required</div>}
+            @if(email.errors?.['email']){<div>Email is not valid</div>}
+          </div> }
+  
+        <label>Phone*</label>
+        <input type="text" formControlName="phone">
+        <div>
+          <label>Status</label>
+          <div>
+            <label>
+              <input type="radio" formControlName="status" value="PLAYING"> PLAYING
+            </label>
+            <label>
+              <input type="radio" formControlName="status" value="WITHDREW"> WITHDREW
+            </label>
+            <label>
+              <input type="radio" formControlName="status" value="PENDING"> PENDING
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <span class="form-column" style="float: right;">
+        <button type="submit" [disabled]="participantForm.invalid" (click)="updateParticipantStatus($event)">Save</button>
+      </span>
+      <span class="form-column" >
+        <button type="submit" (click)="backToParticipantsPage()">Go back</button>
+      </span>
+    </div>
+  
+  </form>
+  
+</div>
